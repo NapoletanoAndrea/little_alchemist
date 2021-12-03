@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interacter : MonoBehaviour {
-    [SerializeField] private VoidEventChannelSO OnPickedUpEventChannel;
+    [SerializeField] private InputReaderSO inputReader;
+    [SerializeField] private VoidEventChannelSO pickedUpEventChannel;
     private IInteractable interactable;
     private float radius;
 
     private void Awake() {
-        OnPickedUpEventChannel.OnEventRaised += SearchForInteractable;
+        inputReader.actionEvent += Interact;
+        pickedUpEventChannel.OnEventRaised += SearchForInteractable;
         radius = GetComponent<SphereCollider>().radius;
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            interactable?.Interact();
-        }
+    private void Interact() {
+        interactable?.Interact();
     }
 
     private void SearchForInteractable() {

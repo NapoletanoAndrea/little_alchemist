@@ -3,20 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState {
-    IDLE,
-    MENUING
-}
-
 public class PlayerBehaviour : MonoBehaviour {
     private Transform moveCam;
     private Vector3 direction;
     private Rigidbody rb;
     private Animator animator;
-    private PlayerState playerState;
     private int currentAnimationState = -1;
-
-    [SerializeField] private VoidEventChannelSO OnPickedUpEventChannel;
+    
+    [SerializeField] private VoidEventChannelSO pickingUpEvent;
+    [SerializeField] private VoidEventChannelSO pickedUpEvent;
+    [SerializeField] private InputReaderSO InputReader;
     [SerializeField] private float speed;
     [SerializeField] private float turnSmoothTime;
     private float turnSmoothVelocity;
@@ -27,41 +23,35 @@ public class PlayerBehaviour : MonoBehaviour {
         moveCam = Camera.main.transform;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        OnPickedUpEventChannel.OnEventRaised += PickUpPlant;
+        pickingUpEvent.OnEventRaised += PickUpPlant;
+        EnableInput();
     }
 
     private void Update() {
-        switch (playerState) {
-            case PlayerState.IDLE:
-                GetDirection();
-                break;
-            case PlayerState.MENUING:
-                animator.SetInteger(State, 0);
-                break;
-        }
+        InputReader.OnMove();
+        InputReader.OnActionKeyPressed();
     }
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
-    private void GetDirection() {
-        direction = moveCam.forward.normalized * Input.GetAxisRaw("Vertical") + moveCam.right.normalized * Input.GetAxisRaw("Horizontal");
+    private void OnMove(Vector2 movement) {
+        direction = moveCam.right.normalized * movement.x + moveCam.forward.normalized * movement.y;
         direction.y = 0;
 
         if (direction.magnitude > .1f) {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            ChangeAnimationState(1);
         }
-        else {
-            ChangeAnimationState(0);
-        }
+        
+        ChangeAnimationState(direction.magnitude > .1f ? 1 : 0);
     }
 
     private void PickUpPlant() {
-        animator.SetInteger(State, 2);
+        DisableInput();
+        ChangeAnimationState(2);
     }
 
     private void ChangeAnimationState(int stateNumber) {
@@ -70,5 +60,17 @@ public class PlayerBehaviour : MonoBehaviour {
         }
         animator.SetInteger(State, stateNumber);
         currentAnimationState = stateNumber;
+    }
+
+    public void EnableInput() {
+        InputReader.movementEvent += OnMove;
+    }
+    
+    public void DisableInput() {
+        InputReader.movementEvent -= OnMove;
+    }
+
+    public void OnPickedUp() {
+        pickedUpEvent.OnEventRaised();
     }
 }

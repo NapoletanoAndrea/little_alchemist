@@ -60,7 +60,14 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: ChangeAnimationState
+        functionName: EnableInput
+        data: 
+        objectReferenceParameter: {fileID: 947712101632791394, guid: ed8f291106d76574db665b21da708027, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.24485597
+        functionName: OnPickedUp
         data: 
         objectReferenceParameter: {fileID: 947712101632791394, guid: ed8f291106d76574db665b21da708027, type: 3}
         floatParameter: 0

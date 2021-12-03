@@ -9,6 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a80f292ae1f11f4e96bec531ac07ff2, type: 3}
-  m_Name: PickUpItemEventChannel
+  m_Script: {fileID: 11500000, guid: d6b05609bb2ca274faa2a3f42d4d9a93, type: 3}
+  m_Name: InputReader
   m_EditorClassIdentifier: 
+  horizontalAxisString: Horizontal
+  verticalAxisString: Vertical
+  actionKey: 101
+  inventoryKey: 105

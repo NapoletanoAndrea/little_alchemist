@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour, IInteractable {
     [SerializeField] private ItemSO item;
-    [SerializeField] private VoidEventChannelSO OnPickedUpEventChannel;
+    [SerializeField] private VoidEventChannelSO pickingUpEventChannel;
+    [SerializeField] private VoidEventChannelSO pickedUpEventChannel;
 
     private void Awake() {
-        OnPickedUpEventChannel.OnEventRaised += OnPickedUp;
+        pickedUpEventChannel.OnEventRaised += OnPickedUp;
     }
 
     public void OnPickedUp() {
@@ -17,6 +18,6 @@ public class ItemWorld : MonoBehaviour, IInteractable {
     }
 
     public void Interact() {
-        OnPickedUpEventChannel.RaiseEvent();
+        pickingUpEventChannel.RaiseEvent();
     }
 }
