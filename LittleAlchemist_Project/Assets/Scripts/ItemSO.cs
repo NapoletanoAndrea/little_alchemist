@@ -8,7 +8,17 @@ public class ItemSO : ScriptableObject {
     [TextArea] public string description;
     public GameObject prefab;
 
-    public void OnPickedUp() {
+    public void OnPickedUp(ItemSO item, int amount) {
         Debug.Log(itemName + " has been picked up!");
+    }
+}
+
+public class ItemStack {
+    public ItemSO item;
+    public int amount;
+
+    public ItemStack(ItemSO item, int amount) {
+        this.item = item;
+        this.amount = amount;
     }
 }

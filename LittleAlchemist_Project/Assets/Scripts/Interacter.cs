@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Interacter : MonoBehaviour {
     [SerializeField] private InputReaderSO inputReader;
-    [SerializeField] private VoidEventChannelSO pickedUpEventChannel;
+    [SerializeField] private PickedUpEventChannelSO pickedUpEventChannel;
     private IInteractable interactable;
     private float radius;
 
     private void Awake() {
         inputReader.actionEvent += Interact;
-        pickedUpEventChannel.OnEventRaised += SearchForInteractable;
+        pickedUpEventChannel.OnPickedUp += SearchForInteractable;
         radius = GetComponent<SphereCollider>().radius;
     }
 
@@ -43,5 +43,10 @@ public class Interacter : MonoBehaviour {
         if (other.GetComponent<IInteractable>() == interactable) {
             interactable = null;
         }
+    }
+
+    private void OnDisable() {
+        inputReader.actionEvent -= Interact;
+        pickedUpEventChannel.OnPickedUp -= SearchForInteractable; 
     }
 }

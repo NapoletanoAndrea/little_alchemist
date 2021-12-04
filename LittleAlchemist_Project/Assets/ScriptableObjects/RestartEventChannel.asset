@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e59e7e15aece84ab19fd6beea16594, type: 3}
-  m_Name: CubeSO
+  m_Script: {fileID: 11500000, guid: 3a80f292ae1f11f4e96bec531ac07ff2, type: 3}
+  m_Name: RestartEventChannel
   m_EditorClassIdentifier: 
-  itemName: Cube
-  description: Cub-ish plant
-  prefab: {fileID: 0}

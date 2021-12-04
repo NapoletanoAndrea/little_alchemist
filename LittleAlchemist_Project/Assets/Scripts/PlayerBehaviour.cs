@@ -11,7 +11,6 @@ public class PlayerBehaviour : MonoBehaviour {
     private int currentAnimationState = -1;
     
     [SerializeField] private VoidEventChannelSO pickingUpEvent;
-    [SerializeField] private VoidEventChannelSO pickedUpEvent;
     [SerializeField] private InputReaderSO InputReader;
     [SerializeField] private float speed;
     [SerializeField] private float turnSmoothTime;
@@ -70,7 +69,8 @@ public class PlayerBehaviour : MonoBehaviour {
         InputReader.movementEvent -= OnMove;
     }
 
-    public void OnPickedUp() {
-        pickedUpEvent.OnEventRaised();
+    private void OnDisable() {
+        InputReader.movementEvent -= OnMove;
+        pickingUpEvent.OnEventRaised -= PickUpPlant;
     }
 }

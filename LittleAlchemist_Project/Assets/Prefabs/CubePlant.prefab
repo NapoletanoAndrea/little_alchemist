@@ -110,4 +110,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 9064f9acbeb22594d988ffa5a18c1907, type: 2}
   pickingUpEventChannel: {fileID: 11400000, guid: 331932056317e9a498c4c6f47be79b74, type: 2}
-  pickedUpEventChannel: {fileID: 11400000, guid: 2531ef23f7de49e40a4a658e63a2f248, type: 2}
+  pickedUpEventChannel: {fileID: 11400000, guid: 677b6a87393162e49bc729f1388cc70c, type: 2}
