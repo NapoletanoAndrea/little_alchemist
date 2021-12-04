@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemSO : ScriptableObject {
     public string itemName;
     [TextArea] public string description;
-    public GameObject prefab;
+    public Sprite sprite;
 
     public void OnPickedUp(ItemSO item, int amount) {
         Debug.Log(itemName + " has been picked up!");
