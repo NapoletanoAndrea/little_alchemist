@@ -29,6 +29,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private void Update() {
         InputReader.OnMove();
         InputReader.OnActionKeyPressed();
+        InputReader.OnInventoryKeyPressed();
     }
 
     private void FixedUpdate() {

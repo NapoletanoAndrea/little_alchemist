@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental;
 using UnityEngine;
 
 public class Inventory {
+    public Action Changed;
     public List<ItemStack> items = new List<ItemStack>();
 
     public void Add(ItemSO item, int count) {
@@ -19,7 +21,7 @@ public class Inventory {
             }
         }
         items.Add(new ItemStack(item, count));
-        
+        Changed.Invoke();
         Debug.Log(items[items.Count-1].item.itemName);
     }
 }

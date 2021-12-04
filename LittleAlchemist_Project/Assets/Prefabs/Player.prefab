@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 137248683392113693}
   - component: {fileID: 137248683392113683}
   - component: {fileID: 137248683392113695}
+  - component: {fileID: 1363162931859088384}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -193,10 +194,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickingUpEvent: {fileID: 11400000, guid: 331932056317e9a498c4c6f47be79b74, type: 2}
-  pickedUpEvent: {fileID: 11400000, guid: 2531ef23f7de49e40a4a658e63a2f248, type: 2}
   InputReader: {fileID: 11400000, guid: b0efbd70f0a367b48bc7f34e01dbea87, type: 2}
   speed: 10
   turnSmoothTime: 0.2
+--- !u!114 &1363162931859088384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947712101632791394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d214b1ae3de3e4b8ee84fdd4caf7fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUpEventChannel: {fileID: 11400000, guid: 677b6a87393162e49bc729f1388cc70c, type: 2}
 --- !u!1 &1072589466075967545
 GameObject:
   m_ObjectHideFlags: 0
