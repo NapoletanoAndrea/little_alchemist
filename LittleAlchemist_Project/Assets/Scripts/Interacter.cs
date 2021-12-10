@@ -45,6 +45,14 @@ public class Interacter : MonoBehaviour {
         }
     }
 
+    public void EnableInput() {
+        inputReader.actionEvent += Interact;
+    }
+
+    public void DisableInput() {
+        inputReader.actionEvent -= Interact;
+    }
+
     private void OnDisable() {
         inputReader.actionEvent -= Interact;
         pickedUpEventChannel.OnPickedUp -= SearchForInteractable; 
