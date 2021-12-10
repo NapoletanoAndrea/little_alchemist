@@ -8,7 +8,7 @@ public class Inventory {
     public Action Changed;
     public List<ItemStack> items = new List<ItemStack>();
 
-    public void Add(ItemSO item, int count) {
+    public void Add(ItemSO item, int count, ItemInstance itemInstance) {
         if (count <= 0) {
             return;
         }

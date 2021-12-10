@@ -12,10 +12,12 @@ public class ItemInstance : MonoBehaviour, IInteractable {
         pickedUpEventChannel.OnPickedUpItem += OnPickedUp;
     }
 
-    public void OnPickedUp(ItemSO item, int amount) {
-        pickedUpEventChannel.OnPickedUpItem -= OnPickedUp;
-        item.OnPickedUp(item, amount);
-        Destroy(gameObject);
+    public void OnPickedUp(ItemSO item, int amount, ItemInstance itemInstance) {
+        if (itemInstance == this) {
+            pickedUpEventChannel.OnPickedUpItem -= OnPickedUp;
+            item.OnPickedUp(item, amount);
+            Destroy(gameObject);
+        }
     }
 
     public void Interact() {
@@ -25,6 +27,10 @@ public class ItemInstance : MonoBehaviour, IInteractable {
 
     private IEnumerator PickUpCoroutine() {
         yield return new WaitForSeconds(.5f);
-        pickedUpEventChannel.RaiseEvent(item, 1);
+        pickedUpEventChannel.RaiseEvent(item, 1, this);
+    }
+
+    private void OnDisable() {
+        pickedUpEventChannel.OnPickedUpItem -= OnPickedUp;
     }
 }
