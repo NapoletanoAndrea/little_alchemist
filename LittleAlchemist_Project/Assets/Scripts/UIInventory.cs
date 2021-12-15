@@ -52,7 +52,7 @@ public class UIInventory : MonoBehaviour {
 			var itemContainerInstance = containerInstance.GetComponent<ItemContainer>();
 			itemContainerInstance.itemNameText.text = inventory.items[i].item.itemName;
 			itemContainerInstance.itemDescriptionText.text = inventory.items[i].item.description;
-			itemContainerInstance.itemIcon.sprite = inventory.items[i].item.sprite;
+			itemContainerInstance.itemAmount.text = inventory.items[i].amount.ToString();
 			GameObject containerGO;
 			(containerGO = containerInstance.gameObject).SetActive(true);
 			itemContainers.Add(containerGO);

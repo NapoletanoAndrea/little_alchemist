@@ -11,6 +11,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private int currentAnimationState = -1;
     
     [SerializeField] private VoidEventChannelSO pickingUpEvent;
+    [SerializeField] private VoidEventChannelSO boardInteractEvent;
+    [SerializeField] private VoidEventChannelSO boardExitEvent;
     [SerializeField] private InputReaderSO InputReader;
     [SerializeField] private float speed;
     [SerializeField] private float turnSmoothTime;
@@ -24,6 +26,8 @@ public class PlayerBehaviour : MonoBehaviour {
         animator = GetComponent<Animator>();
         pickingUpEvent.OnEventRaised += PickUpPlant;
         EnableInput();
+        boardInteractEvent.OnEventRaised += DisableInput;
+        boardExitEvent.OnEventRaised += EnableInput;
     }
 
     private void Update() {
@@ -73,5 +77,7 @@ public class PlayerBehaviour : MonoBehaviour {
     private void OnDisable() {
         InputReader.movementEvent -= OnMove;
         pickingUpEvent.OnEventRaised -= PickUpPlant;
+        boardInteractEvent.OnEventRaised -= DisableInput;
+        boardExitEvent.OnEventRaised -= EnableInput;
     }
 }

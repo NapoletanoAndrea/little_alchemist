@@ -17,6 +17,7 @@ public class Inventory {
             ItemStack stack = items[i];
             if (stack.item == item) {
                 stack.amount += count;
+                Changed.Invoke();
                 return;
             }
         }

@@ -7,5 +7,5 @@ public class ItemContainer : MonoBehaviour
 {
     public Text itemNameText;
     public Text itemDescriptionText;
-    public Image itemIcon;
+    public Text itemAmount;
 }

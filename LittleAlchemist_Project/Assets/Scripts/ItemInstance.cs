@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemInstance : MonoBehaviour, IInteractable {
-    [SerializeField] private ItemSO item;
+    public ItemSO item;
     [SerializeField] private VoidEventChannelSO pickingUpEventChannel;
     [SerializeField] private PickedUpEventChannelSO pickedUpEventChannel;
 

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cube
   description: Cub-ish plant
-  sprite: {fileID: 21300000, guid: 0b963c126b0bbaf4fbd6974846cf73cd, type: 3}
+  itemPrefab: {fileID: 1944545185929976059, guid: b3090689b8ce95844ac25069e5d8222d, type: 3}
+  baseIngredient: 1
